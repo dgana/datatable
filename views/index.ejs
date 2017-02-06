@@ -21,7 +21,63 @@
             <th>Salary</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="content">
+          <tr>
+            <td>Airi Satou</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+          </tr>
+          <tr>
+            <td>Angelica Ramos</td>
+            <td>Chief Executive Officer (CEO)</td>
+            <td>London</td>
+            <td>47</td>
+            <td>2009/10/09</td>
+            <td>$1,200,000</td>
+          </tr>
+          <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+          </tr>
+          <tr>
+            <td>Bradley Greer</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>41</td>
+            <td>2012/10/13</td>
+            <td>$132,000</td>
+          </tr>
+          <tr>
+            <td>Brenden Wagner</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>28</td>
+            <td>2011/06/07</td>
+            <td>$206,850</td>
+          </tr>
+          <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+          </tr>
+          <tr>
+            <td>Gavin Joyce</td>
+            <td>Developer</td>
+            <td>Edinburgh</td>
+            <td>42</td>
+            <td>2010/12/22</td>
+            <td>$92,575</td>
+          </tr>
         </tbody>
       </table>
 
@@ -53,47 +109,66 @@
           <button type="submit" class="btn btn-success">Add Data</button>
         </div>
       </form>
+    </div>
 
-      <script>
-      $("#datatable_form").submit(function(e){
-        e.preventDefault();
-        let inputName = $("input[name=name]").val();
-        let inputPosition = $("input[name=position]").val();
-        let inputOffice = $("input[name=office]").val();
-        let inputAge = $("input[name=age]").val();
-        let inputSalary = $("input[name=salary]").val();
-        console.log(name, position, office, age, salary);
+    <script>
 
-        $.ajax({
+    $.ajax({
+      method: "GET",
+      url: "/api/users",
+      dataType: "json"
+    })
+      .done(function(data) {
+        console.log(data);
+        buildTable(data)
+    });
+
+    function buildTable(data){
+      let html=""
+      for(let i = 0; i < data.length; i++){
+        html += `<tr>`
+        html += `<td>${data[i].name}</td>`
+        html += `<td>${data[i].position}</td>`
+        html += `<td>${data[i].office}</td>`
+        html += `<td>${data[i].age}</td>`
+        html += `<td>${data[i].start_date}</td>`
+        html += `<td>${data[i].salary}</td>`
+        html += `</tr>`
+      }
+      $("#content").html(html)
+    }
+
+    $("#datatable_form").submit(function(e) {
+      e.preventDefault();
+
+
+      $.ajax({
         method: "POST",
         url: "/api/users/add",
-        data: {
-          name: inputName,
-          position: inputPosition,
-          office: inputOffice,
-          age: inputAge,
-          salary: inputSalary
-        },
+        data: $("#datatable_form").serialize(),
         dataType: "json"
-        })
+      })
         .done(function(data) {
+          console.log(data);
           addTable(data)
-        });
-        return false;
-        })
-
-        function addTable(data){
-          let html = ""
-          html += `<tr>`
-          html += `<td>${data.name}</td>`
-          html += `<td>${data.position}</td>`
-          html += `<td>${data.completed}</td>`
-          html += `</tr>`
-          $("#todos-table tbody").append(html)
-        }
       });
-      </script>
-    </div>
+      return false;
+      })
+
+      function addTable(data){
+        let html = ""
+        html += `<tr>`
+        html += `<td>${data.name}</td>`
+        html += `<td>${data.position}</td>`
+        html += `<td>${data.office}</td>`
+        html += `<td>${data.age}</td>`
+        html += `<td>${data.start_date}</td>`
+        html += `<td>${data.salary}</td>`
+        html += `</tr>`
+        $("#content").append(html)
+      }
+
+    </script>
 
   </body>
 </html>

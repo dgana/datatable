@@ -7,8 +7,8 @@ var usersSchema = new Schema({
   position: String,
   office: String,
   age: Number,
-  start_date: Date,
-  salary: String
+  salary: String,
+  start_date: Date
 });
 
 // the schema is useless so far

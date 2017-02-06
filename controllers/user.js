@@ -2,7 +2,8 @@ const Users = require('../models/users');
 
 module.exports = {
   add: (req, res) => {
-    let newUser = Todos({
+    console.log(req.body);
+    let newUser = Users({
       name: req.body.name,
       position: req.body.position,
       office: req.body.office,
@@ -14,6 +15,7 @@ module.exports = {
     // save todo
     newUser.save(function(err, user) {
       if (err) throw err;
+      console.log(user);
       res.json(user);
     });
   },
