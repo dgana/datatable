@@ -4,81 +4,158 @@
     <title><%= title %></title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div class="container">
       <h1 style="margin-bottom: 20px;"><%= title %></h1>
 
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start Date</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tbody id="content">
-          <tr>
-            <td>Airi Satou</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>33</td>
-            <td>2008/11/28</td>
-            <td>$162,700</td>
-          </tr>
-          <tr>
-            <td>Angelica Ramos</td>
-            <td>Chief Executive Officer (CEO)</td>
-            <td>London</td>
-            <td>47</td>
-            <td>2009/10/09</td>
-            <td>$1,200,000</td>
-          </tr>
-          <tr>
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-          </tr>
-          <tr>
-            <td>Bradley Greer</td>
-            <td>Software Engineer</td>
-            <td>London</td>
-            <td>41</td>
-            <td>2012/10/13</td>
-            <td>$132,000</td>
-          </tr>
-          <tr>
-            <td>Brenden Wagner</td>
-            <td>Software Engineer</td>
-            <td>San Francisco</td>
-            <td>28</td>
-            <td>2011/06/07</td>
-            <td>$206,850</td>
-          </tr>
-          <tr>
-            <td>Cedric Kelly</td>
-            <td>Senior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>22</td>
-            <td>2012/03/29</td>
-            <td>$433,060</td>
-          </tr>
-          <tr>
-            <td>Gavin Joyce</td>
-            <td>Developer</td>
-            <td>Edinburgh</td>
-            <td>42</td>
-            <td>2010/12/22</td>
-            <td>$92,575</td>
-          </tr>
-        </tbody>
+      <table class="table table-bordered" id="content">
+        <tr>
+          <th>Name <span id="sort_name">^</span></th>
+          <th>Position <span id="sort_position">^</span></th>
+          <th>Office <span id="sort_office">^</span></th>
+          <th>Age <span id="sort_age">^</span></th>
+          <th>Start Date <span id="sort_start_date">^</span></th>
+          <th>Salary <span id="sort_salary">^</span></th>
+        </tr>
+        <tr>
+          <td>Airi Satou</td>
+          <td>Accountant</td>
+          <td>Tokyo</td>
+          <td>33</td>
+          <td>2008/11/28</td>
+          <td>$162,700</td>
+        </tr>
+        <tr>
+          <td>Angelica Ramos</td>
+          <td>Chief Executive Officer (CEO)</td>
+          <td>London</td>
+          <td>47</td>
+          <td>2009/10/09</td>
+          <td>$1,200,000</td>
+        </tr>
+        <tr>
+          <td>Ashton Cox</td>
+          <td>Junior Technical Author</td>
+          <td>San Francisco</td>
+          <td>66</td>
+          <td>2009/01/12</td>
+          <td>$86,000</td>
+        </tr>
+        <tr>
+          <td>Bradley Greer</td>
+          <td>Software Engineer</td>
+          <td>London</td>
+          <td>41</td>
+          <td>2012/10/13</td>
+          <td>$132,000</td>
+        </tr>
+        <tr>
+          <td>Brenden Wagner</td>
+          <td>Software Engineer</td>
+          <td>San Francisco</td>
+          <td>28</td>
+          <td>2011/06/07</td>
+          <td>$206,850</td>
+        </tr>
+        <tr>
+          <td>Cedric Kelly</td>
+          <td>Senior Javascript Developer</td>
+          <td>Edinburgh</td>
+          <td>22</td>
+          <td>2012/03/29</td>
+          <td>$433,060</td>
+        </tr>
+        <tr>
+          <td>Gavin Joyce</td>
+          <td>Developer</td>
+          <td>Edinburgh</td>
+          <td>42</td>
+          <td>2010/12/22</td>
+          <td>$92,575</td>
+        </tr>
+        <tr>
+          <td>Hermione Butler</td>
+          <td>Regional Director</td>
+          <td>London</td>
+          <td>47</td>
+          <td>2011/03/21</td>
+          <td>$356,250</td>
+        </tr>
+        <tr>
+          <td>Lael Greer</td>
+          <td>Systems Administrator</td>
+          <td>London</td>
+          <td>21</td>
+          <td>2009/02/27</td>
+          <td>$103,500</td>
+        </tr>
+        <tr>
+          <td>Jonas Alexander</td>
+          <td>Developer</td>
+          <td>San Francisco</td>
+          <td>30</td>
+          <td>2010/07/14</td>
+          <td>$86,500</td>
+        </tr>
+        <tr>
+          <td>Shad Decker</td>
+          <td>Regional Director</td>
+          <td>Edinburgh</td>
+          <td>51</td>
+          <td>2008/11/13</td>
+          <td>$183,000</td>
+        </tr>
+        <tr>
+          <td>Michael Bruce</td>
+          <td>Javascript Developer</td>
+          <td>Singapore</td>
+          <td>29</td>
+          <td>2011/06/27</td>
+          <td>$183,000</td>
+        </tr>
+        <tr>
+          <td>Donna Snider</td>
+          <td>Customer Support</td>
+          <td>New York</td>
+          <td>27</td>
+          <td>2011/01/25</td>
+          <td>$112,000</td>
+        </tr>
+        <tr>
+          <td>Zenaida Frank</td>
+          <td>Software Engineer</td>
+          <td>New York</td>
+          <td>63</td>
+          <td>2010/01/04</td>
+          <td>$125,250</td>
+        </tr>
+        <tr>
+          <td>Zorita Serrano</td>
+          <td>Software Engineer</td>
+          <td>San Francisco</td>
+          <td>56</td>
+          <td>2012/06/01</td>
+          <td>$115,000</td>
+        </tr>
+        <tr>
+          <td>Jennifer Acosta</td>
+          <td>Junior Javascript Developer</td>
+          <td>Edinburgh</td>
+          <td>43</td>
+          <td>2013/02/01</td>
+          <td>$75,650</td>
+        </tr>
+        <tr>
+          <td>Cara Stevens</td>
+          <td>Sales Assistant</td>
+          <td>New York</td>
+          <td>46</td>
+          <td>2011/12/06</td>
+          <td>$145,600</td>
+        </tr>
       </table>
 
       <hr>
@@ -112,6 +189,48 @@
     </div>
 
     <script>
+    var table = $('table');
+
+    $('#sort_name, #sort_position, #sort_office, #sort_age, #sort_start_date, #sort_salary')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function(){
+
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+
+            th.click(function(){
+
+                table.find('td').filter(function(){
+
+                    return $(this).index() === thIndex;
+
+                }).sortElements(function(a, b){
+
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+
+                }, function(){
+
+                    // parentNode is the element we want to move
+                    return this.parentNode;
+
+                });
+
+                inverse = !inverse;
+
+            });
+
+        });
+
+
+    // $('#sort_name').click(function(){
+    //   // alert('^_^')
+    //
+    //   let data = $('tr td').html();
+    //   console.log(data);
+    // })
 
     $.ajax({
       method: "GET",
@@ -135,7 +254,7 @@
         html += `<td>${data[i].salary}</td>`
         html += `</tr>`
       }
-      $("#content").html(html)
+      $("#content").append(html)
     }
 
     $("#datatable_form").submit(function(e) {
